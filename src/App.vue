@@ -87,6 +87,6 @@ export default{
 
 
   .altezza{
-    height: 770px;
+    height: 1450px;
   }
 </style>

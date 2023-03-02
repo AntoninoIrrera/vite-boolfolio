@@ -16,7 +16,9 @@ export default{
 
   <div class="col-3 my-3">
     <div class="card" style="width: 18rem;">
-    <!-- <img v-if="image != null" :src="{image}"  class="card-img-top" alt="..."> -->
+    <div class="text-center">
+      <img v-if="image != null" :src="'http://127.0.0.1:8000/storage/' + image"  class="card-img-top w-50" alt="...">
+    </div>
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ type.name }}</p>
