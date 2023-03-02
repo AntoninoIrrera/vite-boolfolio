@@ -37,7 +37,7 @@ export default{
     nextPage(){
 
       this.index++
-      if(this.index == 4){
+      if(this.index == this.pageURL.length - 1){
         this.index = 1;
       }
       this.apiURL = this.pageURL[this.index].url
@@ -48,7 +48,7 @@ export default{
 
       this.index--
       if(this.index == 0){
-        this.index = 3
+        this.index = this.pageURL.length - 2
       }
 
       this.apiURL = this.pageURL[this.index].url
