@@ -1,10 +1,15 @@
 <script>
 import ProjectCard from './components/ProjectCard.vue';
+import AppFooter from './components/AppFooter.vue';
+import AppHeader from './components/AppHeader.vue';
+
 import axios from 'axios';
 
 export default{
   components:{
     ProjectCard,
+    AppFooter,
+    AppHeader
   },
   data(){
     return{
@@ -61,7 +66,8 @@ export default{
 </script>
 
 <template>
-  <main>
+  <AppHeader/>
+  <main class="mt-5 pt-1">
     <div class="container">
       <div class="row">
         <ProjectCard v-for="project in projects" :title="project.title" :image="project.image" :relase_date="project.relase_date" :type="project.type" :technologies="project.technologies"/>
@@ -76,6 +82,7 @@ export default{
       </div>  
     </div>
   </main>
+  <AppFooter/>
 </template>
 
 <style lang="scss">
