@@ -15,8 +15,8 @@ export default{
     return{
       apiURL: 'http://127.0.0.1:8000/api/project?page=1',
       projects: [],
-      pageURL: [],
-      index: 1,
+      nextPageURL: null,
+      prevPageURL: null
     }
   },
   methods:{
@@ -29,29 +29,24 @@ export default{
         .then((response) => {
           console.log(response.data.results);
           this.projects = response.data.results.data;
-          this.pageURL = response.data.results.links;
+          this.nextPageURL = response.data.results.next_page_url;
+          this.prevPageURL = response.data.results.prev_page_url;
          
 
         })
     },
     nextPage(){
 
-      this.index++
-      if(this.index == this.pageURL.length - 1){
-        this.index = 1;
-      }
-      this.apiURL = this.pageURL[this.index].url
+   
+      this.apiURL = this.nextPageURL;
       this.getProjects();
 
     },
     prevPage(){
 
-      this.index--
-      if(this.index == 0){
-        this.index = this.pageURL.length - 2
-      }
+     
 
-      this.apiURL = this.pageURL[this.index].url
+      this.apiURL = this.prevPageURL;
       this.getProjects();
 
     }
@@ -74,10 +69,10 @@ export default{
       </div>
       <div class="row mt-5">
         <div class="col-6">
-          <a href="#" class="btn btn-primary" @click="prevPage">prev</a>
+          <a href="#" v-if="this.prevPageURL != null" class="btn btn-primary" @click="prevPage">prev</a>
         </div>
         <div class="col-6 text-end">
-          <a href="#" class="btn btn-primary" @click="nextPage">next</a>
+          <a href="#" v-if="this.nextPageURL != null" class="btn btn-primary" @click="nextPage">next</a>
         </div>
       </div>  
     </div>
