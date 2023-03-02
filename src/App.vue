@@ -8,8 +8,8 @@ export default{
   },
   data(){
     return{
-      apiURL: 'http://127.0.0.1:8000/api/post',
-      project: [],
+      apiURL: 'http://127.0.0.1:8000/api/project',
+      projects: [],
     }
   },
   methods:{
@@ -19,8 +19,9 @@ export default{
 
         }
       })
-        .then(function (response) {
+        .then((response) => {
           console.log(response.data.results.data);
+          this.projects = response.data.results.data;
         })
     }
   },
@@ -34,7 +35,13 @@ export default{
 </script>
 
 <template>
-  <ProjectCard/>
+  <main>
+    <div class="container">
+      <div class="row">
+        <ProjectCard v-for="project in projects" :title="project.title" :image="project.image" :relase_date="project.relase_date" :type="project.type" :technologies="project.technologies"/>
+      </div>
+    </div>
+  </main>
 </template>
 
 <style lang="scss">
