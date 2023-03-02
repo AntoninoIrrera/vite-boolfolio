@@ -69,7 +69,7 @@ export default{
   <AppHeader/>
   <main class="mt-5 pt-1">
     <div class="container">
-      <div class="row">
+      <div class="row altezza">
         <ProjectCard v-for="project in projects" :title="project.title" :image="project.image" :relase_date="project.relase_date" :type="project.type" :technologies="project.technologies"/>
       </div>
       <div class="row mt-5">
@@ -89,4 +89,9 @@ export default{
 
   @use './style/main.scss' as *;
 
+
+
+  .altezza{
+    height: 770px;
+  }
 </style>
