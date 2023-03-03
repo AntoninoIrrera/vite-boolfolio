@@ -1,11 +1,14 @@
 <script>
     import ProjectCard from '../components/ProjectCard.vue';
+    import AppLoader from '../components/AppLoader.vue';
+
 
     import axios from 'axios';
 
     export default{
         components:{
-            ProjectCard
+            ProjectCard,
+            AppLoader
         },
     data() {
         return {
@@ -56,13 +59,16 @@
 </script>
 
 <template>
-    <div class="container">
-        <main class="mt-5 pt-1">
-            <div class="container">
-                <div class="row altezza">
-                    <ProjectCard v-for="project in projects" :title="project.title" :id="project.id" :image="project.image"
-                        :relase_date="project.relase_date" :type="project.type" :technologies="project.technologies" />
+    <main class="mt-5 pt-1">
+        <div class="container">
+            <div class="row" v-if="projects.length == 0">
+                <div class="col-12 text-center mt-5">
+                    <AppLoader/>
                 </div>
+            </div>
+            <div class="row altezza" v-else>
+                <ProjectCard v-for="project in projects" :title="project.title" :id="project.id" :image="project.image"
+                    :relase_date="project.relase_date" :type="project.type" :technologies="project.technologies" />
             </div>
             
             <div class="row mt-5">
@@ -73,8 +79,8 @@
                     <a href="#" v-if="this.nextPageURL != null" class="btn btn-primary" @click="nextPage">next</a>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 </template>
 
 <style scoped lang="scss"></style>
