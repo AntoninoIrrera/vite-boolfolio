@@ -1,5 +1,12 @@
 <script>
 
+    export default{
+        data(){
+            return{
+                navItems: ['home','projects','about-us']                
+            }
+        }
+    }
 
 
 </script>
@@ -15,14 +22,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item active">
-                            <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{name: 'projects'}" class="nav-link">Projects</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" :to="{name: 'about-us'}">About</router-link>
+                        <li v-for="navItem in navItems" class="nav-item active">
+                            <router-link :to="{name: navItem}" :class="this.$router.name == navItem ? 'active' : '' " class="nav-link">{{ navItem }}</router-link>
                         </li>
                     </ul>
                 </div>
