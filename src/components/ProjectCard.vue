@@ -1,13 +1,16 @@
 <script>
 
+
 export default{
-  props:{
-    title: String,
-    relase_date: String,
-    image: String,
-    type: Object,
-    technologies: Array
-  }
+    props: {
+        id: Number,
+        title: String,
+        relase_date: String,
+        image: String,
+        type: Object,
+        technologies: Array,
+        show: Boolean
+    },
 }
 
 </script>
@@ -26,7 +29,7 @@ export default{
         <span v-for="technology in technologies"> #{{ technology.name }} </span>
       </p>
       <p class="card-text">{{ relase_date }}</p>
-      <a href="#" class="btn btn-primary">show</a>
+      <router-link :to="{ name: 'project', params: { id: id } }" class="nav-link btn btn-primary" v-if="show != true">show</router-link>
     </div>
   </div>
   </div>
